@@ -39,7 +39,7 @@ githubLoginRouter.get("/login/github/callback", async (req, res) => {
 		const tokens = await github.validateAuthorizationCode(code);
 		const githubUserResponse = await fetch("https://api.github.com/user", {
 			headers: {
-				Authorization: `Bearer ${tokens.accessToken}`
+				Authorization: `Bearer ${tokens.accessToken()}`
 			}
 		});
 		const githubUser: GitHubUser = await githubUserResponse.json();
